@@ -6,10 +6,27 @@ export default {
   ],
   theme: {
     extend: {
-      fontFamily:{
-        'Poppins':['Poppins']
+      fontFamily: {
+        'Poppins': ['Poppins']
+      },
+      backgroundImage: {
+        'headerImage': "url('/src/assets/frontend_assets/header_img.png')",
       }
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      addUtilities({
+        '.no-scrollbar': {
+          '-webkit-overflow-scrolling': 'touch',
+          '-ms-overflow-style': 'none',
+          'scrollbar-width': 'none',
+          '&::-webkit-scrollbar': {
+            display: 'none',
+          }
+        }
+      })
+    }
+  ],
 }
+

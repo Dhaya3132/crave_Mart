@@ -6,8 +6,8 @@ const Navbar = () => {
   return (
     <nav className='p-5 flex justify-between items-center' id='navBar'>
         <img src={assets.logo} alt="logo" className='w-24' />
-        <ul id="navBar-Menu" className='flex gap-5 items-center text-base font-normal'>
-          <li onClick={()=> setMenu('home')} className={menu === 'home' ? 'underline-orange-500 underline-offset-8' : ''}>Home</li>
+        <ul id="navBar-Menu" className='cursor-pointer flex gap-5 items-center text-base font-normal'>
+          <li onClick={()=> setMenu('home')} className={menu === 'home' ? 'underline underline-offset-8' : ''}>Home</li>
           <li onClick={()=> setMenu('menu')} className={menu === 'menu' ? 'underline underline-offset-8' : ''}>Menu</li>
           <li onClick={()=> setMenu('blog')} className={menu === 'blog' ? 'underline underline-offset-8' : ''}>Blog</li>
           <li onClick={()=> setMenu('contact')} className={menu === 'contact' ? 'underline underline-offset-8' : ''}>Contact us</li>

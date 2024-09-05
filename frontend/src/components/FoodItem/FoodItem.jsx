@@ -17,9 +17,9 @@ const FoodItem = ({ item }) => {
     }
 
     return (
-        <div className="rounded-xl w-full">
-            <div className="w-fit">
-                <img src={item.image} alt={`${item.name} image`} className="rounded-xl" />
+        <div className="rounded-xl">
+            <div>
+                <img src={item.image} alt={`${item.name} image`} className="rounded-xl w-full" />
             </div>
             <div className="py-5">
                 <div className="flex justify-between mb-2">

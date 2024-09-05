@@ -9,14 +9,14 @@ const ExploreMenu = ({setCategory}) => {
             <div id="menu-list" className='flex justify-between items-center gap-10 overflow-x-auto no-scrollbar mt-5'>
                 {
                     menu_list.map((item, index) => (
-                        <div key={index} className='menu-list-item flex flex-col gap-2 justify-center items-center' onClick={()=> setCategory(item.menu_name)}>
-                            <img src={item.menu_image} alt="item-image" className='w-50 h-50' />
+                        <div key={index} className='menu-list-item flex flex-col gap-2 justify-center items-center shrink-0' onClick={()=> setCategory(item.menu_name)}>
+                            <img src={item.menu_image} alt="item-image" className='w-50 h-50 object-cover' />
                             <p className='font-medium'>{item.menu_name}</p>
                         </div>
                     ))
                 }
             </div>
-            <hr className='mt-10 h-4' />
+            <hr className='mt-10 h-4'/>
         </div>
     )
 }

@@ -10,7 +10,7 @@ const FoodDisplay = () => {
         <div id="foodList" className="grid grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))] gap-5 mt-5">
             {
                 food_list.map((item) => (
-                    <FoodItem key={item.id} item={item} />
+                    <FoodItem key={item._id} item={item} />
                 ))
             }
         </div>

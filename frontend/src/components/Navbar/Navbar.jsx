@@ -30,10 +30,12 @@ const Navbar = ({setShowLogin}) => {
       {
         open &&
         <div className=' bg-neutral-300 p-5'>
-          <ul id="navBar-Menu" className='cursor-pointer flex flex-col gap-3 justify-start items-start text-base font-norma'>
-            <Link to='/'><li onClick={() => setMenu('home')} className={menu === 'home' ? 'underline underline-offset-8' : ''}>Home</li></Link>
-            <a href='#menu' onClick={() => setMenu('menu')} className={menu === 'menu' ? 'underline underline-offset-8' : ''}>Menu</a>
-            <a href='#footer' onClick={() => setMenu('contact')} className={menu === 'contact' ? 'underline underline-offset-8' : ''}>Contact us</a>
+          <ul id="navBar-Menu" className='cursor-pointer flex flex-col gap-3 justify-start items-start text-base font-normal'>
+            <li onClick={() => setMenu('home')} className={menu === 'home' ? 'underline underline-offset-8' : ''}>Home</li>
+            <li onClick={() => setMenu('menu')} className={menu === 'menu' ? 'underline underline-offset-8' : ''}>Menu</li>
+            <li onClick={() => setMenu('blog')} className={menu === 'blog' ? 'underline underline-offset-8' : ''}>Blog</li>
+            <li onClick={() => setMenu('contact')} className={menu === 'contact' ? 'underline underline-offset-8' : ''}>Contact us</li>
+            <li onClick={() => setMenu('mobile-app')} className={menu === 'mobile-app' ? 'underline underline-offset-8' : ''}>Mobile-app</li>
             <li onClick={() => setMenu('cart')}className={menu === 'cart' ? 'underline underline-offset-8' : ''}>Cart</li>
             <li onClick={() => setMenu('signin')} className={menu === 'signin' ? 'underline underline-offset-8' : ''}>Sign in</li>
           </ul>

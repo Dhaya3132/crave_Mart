@@ -2,7 +2,7 @@ import { assets } from "../../assets/frontend_assets/assets"
 
 const Footer = () => {
     return (
-        <div id="footer" className="mt-10 bg-stone-400 p-10 text-white rounded-2xl mb-10">
+        <div id="footer" className="mt-10 bg-black p-10 text-white rounded-2xl mb-10">
             <div id="footer_content" className="flex md:flex-row flex-col justify-evenly w-full md:gap-0 gap-10">
                 <div id="leftPart">
                     <img src={assets.Logo} alt="logo" className="w-28 h-28 rounded-full" />

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { assets } from '../../assets/frontend_assets/assets';
 import {Link} from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({setShowLogin}) => {
   const [menu, setMenu] = useState('home');
   const [open, setIsOpen] = useState(false);
   const handleMenu = () => {
@@ -23,7 +23,7 @@ const Navbar = () => {
             <img src={assets.basket_icon} alt="cart" className='w-5' />
             <div id='dot' className='w-2 h-2 bg-orange-500 rounded-full absolute -top-2 -right-1'></div>
           </div>
-          <button className='text-white font-medium text-base px-6 py-2 bg-orange-500 rounded-full'>Sign in</button>
+          <button className='text-white font-medium text-base px-6 py-2 bg-orange-500 rounded-full' onClick={()=> setShowLogin(true)}>Sign in</button>
         </div>
         <img src={assets.bar} className='w-10 h-10 md:hidden' onClick={handleMenu} />
       </div>
@@ -38,7 +38,6 @@ const Navbar = () => {
             <li onClick={() => setMenu('signin')} className={menu === 'signin' ? 'underline underline-offset-8' : ''}>Sign in</li>
           </ul>
         </div>
-
       }
     </nav>
 

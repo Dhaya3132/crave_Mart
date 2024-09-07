@@ -11,6 +11,9 @@ export default {
       },
       backgroundImage: {
         'headerImage': "url('/src/assets/frontend_assets/header_img.png')",
+      },
+      colors:{
+        'loginColor':'#00000090'
       }
     },
   },

@@ -38,7 +38,6 @@ const Navbar = ({setShowLogin}) => {
             <li onClick={() => setMenu('signin')} className={menu === 'signin' ? 'underline underline-offset-8' : ''}>Sign in</li>
           </ul>
         </div>
-
       }
     </nav>
 

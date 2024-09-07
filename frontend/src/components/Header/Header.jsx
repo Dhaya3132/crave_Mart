@@ -1,14 +1,22 @@
 import React from 'react';
+import { assets } from '../../assets/frontend_assets/assets';
 
 const Header = () => {
   return (
-    <div className='relative bg-headerImage md:p-10 md:h-80 w-full p-5 h-60 rounded-3xl mt-5'>
-       <div id="header-contents" className='absolute flex flex-col items-start md:bottom-5 gap-4'>
-           <h2 className='font-semibold md:text-5xl text-2xl text-white'>Order your favourite foods</h2>
-           <p className='font-extralight text-slate-200 md:text-xl text-base'>Choose from a diverse menu featuring a delactable array of dishes crafted with the finest</p>
-           <button className='bg-white px-6 py-2 rounded-full'>View menu</button>
-       </div>
-       
+    <div className='mt-2 h-full w-full bg-neutral-50  text-black font-normal flex md:flex-row flex-col md:justify-between justify-center items-center'>
+      <div className='md:w-1/2 w-full pt-5 shrink-0 text-white bg-orange-500'>
+        <img src={assets.header_img} alt="header_image" className='mx-auto md:mx-0' />
+      </div>
+      <div className='md:p-10 p-5 flex flex-col flex-1'>
+        <div>
+          <h2 className='text-3xl'>Order favourite food now</h2>
+          <p className='text-orange-500 text-6xl'>Fast and Fresh</p>
+          <button className='bg-black text-white text-sm px-5 py-2 mt-2 rounded-full'>View menu</button>
+        </div>
+        <p className='md:text-5xl text-2xl mt-4'>Hungry? Order now</p>
+        <p className='md:text-3xl text-lg font-extralight'>get flat 20% on all foods</p>
+      </div>
+
     </div>
   )
 }

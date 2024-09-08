@@ -34,7 +34,7 @@ const FoodItem = ({ item }) => {
                             <p className="mx-2">{cartItem[item._id]}</p>
                             <button onClick={handleAddCart} className="bg-orange-500 px-4 py-1 text-white text-base rounded-sm">+</button>
                         </div>) : (<button className="px-6 py-2 bg-orange-500 text-white flex-1 rounded-sm" onClick={handleAddCart}> Add </button>)}
-                    <p className="font-medium text-lg px-4 py-2 bg-orange-50 rounded-sm"> ${item.price} </p>
+                    <p className="font-medium text-lg px-4 py-2 bg-slate-50 rounded-sm"> ${item.price} </p>
                 </div>
             </div>
         </div>

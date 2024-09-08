@@ -61,14 +61,14 @@ const Cart = () => {
               <p className='font-medium text-base'>${totalPrice === 0 ? 0 : totalPrice + 2}</p>
             </div>
           </div>
-          <button className='bg-red-600 text-white px-5 py-2 mt-2 text-sm' onClick={() => navigate('/placeOrder')}>Proceed to Checkout</button>
+          <button className='bg-red-600 text-white px-5 py-2.5 mt-2 text-sm rounded-sm' onClick={() => navigate('/placeOrder')}>Proceed to Checkout</button>
         </div>
         <div id="cart-promoCode right-part">
           <div>
             <h2 className='font-medium text-xl'>If you have a promo Code apply it</h2>
             <div id='cart-promocode' className='mt-3 flex items-center gap-2'>
-              <input type="text" placeholder='Enter a promo code' className='border-2 border-slate-200 outline-none p-2' />
-              <button className='bg-blue-500 py-2 px-4 text-white font-medium'>Submit</button>
+              <input type="text" placeholder='Enter a promo code' className='border-2 border-slate-200 outline-none p-2 rounded-sm' />
+              <button className='bg-blue-500 py-2 px-4 text-white font-medium rounded-sm'>Submit</button>
             </div>
           </div>
         </div>

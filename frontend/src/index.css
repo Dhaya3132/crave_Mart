@@ -2,3 +2,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+#input-fields{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+#place-order-left input{
+   padding: 10px;
+   border: 2px solid rgba(128, 128, 128, 0.207);
+   border-radius: 5px;
+   width: 100%;
+}

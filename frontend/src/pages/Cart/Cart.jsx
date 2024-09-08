@@ -2,16 +2,20 @@ import React from 'react';
 import { useContext } from 'react';
 import { StoreContext } from '../../context/StoreContext';
 import { useSelector, useDispatch } from "react-redux";
-import {removeCart} from '../../store/cartSlice';
+import { removeCart } from '../../store/cartSlice';
+import { totalAmount } from '../../store/cartSlice';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
   const { food_list } = useContext(StoreContext);
   const dispatch = useDispatch()
   const cartItems = useSelector(state => state.cart.cartItem);
+  const totalPrice  = useSelector(totalAmount);
+  const navigate = useNavigate();
   return (
     <div id='cart'>
       <div id="cart-item">
-        <div id="cart-title" className='grid grid-cols-6 gap-5 items-center mb-2'>
+        <div id="cart-title" className='grid grid-cols-6 gap-5 items-center mb-2 font-semibold md:text-lg text-xs'>
           <p>Items</p>
           <p>Title</p>
           <p>Price</p>
@@ -25,47 +29,46 @@ const Cart = () => {
             if (cartItems[item._id] > 0) {
               return (
                 <div>
-                  <div key={index} className='grid grid-cols-6 gap-5 items-center my-7 font-normal text-sm' >
-                    <img src={item.image} alt="item_image" className='w-24 h-24' />
+                  <div key={index} className='grid grid-cols-6 md:gap-5 gap-4 items-center my-3 font-medium md:text-sm text-xs' >
+                    <img src={item.image} alt="item_image" className='md:w-24 w-12 md:h-24 h-12 rounded-xl' />
                     <p>{item.name}</p>
                     <p>${item.price}</p>
                     <p>{cartItems[item._id]}</p>
                     <p>${item.price * cartItems[item._id]}</p>
-                    <p className='cursor-pointer' onClick={()=> dispatch(removeCart(item._id)) }>x</p>
+                    <p className='cursor-pointer' onClick={() => dispatch(removeCart(item._id))}>x</p>
                   </div>
                   <hr />
                 </div>
-
               )
             }
           })
         }
       </div>
-      <div id="cart-bottom" className='flex justify-between gap-10 mt-10 p-10'>
-        <div id="cart-total" className='flex-1'>
-          <h2 className='font-medium text-2xl'>Cart total</h2>
-          <div className='mt-2 text-gray-600'>
-            <div id="cart-total-details" className='flex justify-between border-b-2 border-slate-100'>
+      <div id="cart-bottom" className='flex md:flex-row flex-col justify-between gap-5 mt-10 md:p-5 p-0 w-full'>
+        <div id="cart-total left-Part" className='md:w-1/2 w-full'>
+          <h2 className='font-medium text-2xl' id='title'>Cart total</h2>
+          <div className='mt-2 text-gray-600' id='cart-total-details'>
+            <div id="cart-total-details" className='flex justify-between border-b-2 border-slate-100 p-1'>
               <h2 className='font-medium text-base'>Sub Total</h2>
-              <p>{2}</p>
+              <p className='font-medium text-base'>${totalPrice}</p>
             </div>
-            <div id="cart-total-details" className='flex justify-between border-b-2 border-slate-100'>
-              <h2>Delivery fees</h2>
-              <p>{2}</p>
+            <div id="cart-total-details" className='flex justify-between border-b-2 border-slate-100 p-1'>
+              <h2 className='font-medium text-base'>Delivery fees</h2>
+              <p className='font-medium text-base'>${totalPrice === 0 ? 0 : 2 }</p>
             </div>
-            <div id="cart-total-details" className='flex justify-between border-b-2 border-slate-100'>
-              <h2>Total</h2>
-              <p>{0}</p>
+            <div id="cart-total-details" className='flex justify-between border-b-2 border-slate-100 p-1'>
+              <h2 className='font-medium text-base'>Total</h2>
+              <p className='font-medium text-base'>${totalPrice === 0 ? 0 : totalPrice + 2}</p>
             </div>
           </div>
-          <button className='bg-red-800 text-white px-5 py-2'>Proceed to Checkout</button>
+          <button className='bg-red-600 text-white px-5 py-2 mt-2 text-sm' onClick={() => navigate('/placeOrder')}>Proceed to Checkout</button>
         </div>
-        <div id="cart-promoCode">
+        <div id="cart-promoCode right-part">
           <div>
-            <h2>If you have a promo Code apply it</h2>
-            <div id='cart-promocode'>
-              <input type="text" placeholder='Enter a promo code' />
-              <button>Submit</button>
+            <h2 className='font-medium text-xl'>If you have a promo Code apply it</h2>
+            <div id='cart-promocode' className='mt-3 flex items-center gap-2'>
+              <input type="text" placeholder='Enter a promo code' className='border-2 border-slate-200 outline-none p-2' />
+              <button className='bg-blue-500 py-2 px-4 text-white font-medium'>Submit</button>
             </div>
           </div>
         </div>
@@ -74,4 +77,4 @@ const Cart = () => {
   )
 }
 
-export default Cart
+export default Cart;

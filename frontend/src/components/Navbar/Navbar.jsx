@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { assets } from '../../assets/frontend_assets/assets';
 import { Link } from 'react-router-dom';
-
+import { useSelector } from 'react-redux';
+import { totalAmount } from '../../store/cartSlice';
 const Navbar = ({ setShowLogin }) => {
+  const totalPrice = useSelector(totalAmount);
   const [menu, setMenu] = useState('home');
   const [open, setIsOpen] = useState(false);
   const handleMenu = () => { setIsOpen(!open); }
@@ -21,7 +23,7 @@ const Navbar = ({ setShowLogin }) => {
           <img src={assets.search_icon} alt="search-icon" className='w-5' />
           <div id='cart' className='relative'>
             <Link to='/cart'><img src={assets.basket_icon} alt="cart" className='w-5' /></Link>
-            <div id='dot' className='w-2 h-2 bg-orange-500 rounded-full absolute -top-2 -right-1'></div>
+            {totalPrice > 0 ? <div id='dot' className='w-2 h-2 bg-orange-500 rounded-full absolute -top-2 -right-1'></div> : ''}
           </div>
           <button className='text-white px-5 py-2.5 bg-black rounded-full text-xs' onClick={() => setShowLogin(true)}>Sign in/ Login</button>
         </div>

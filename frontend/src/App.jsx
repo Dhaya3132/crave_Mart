@@ -8,7 +8,7 @@ function App() {
   const [showLogin , setShowLogin] = useState(false);
   return (
     <>
-      {showLogin ? <Login /> : <></>}
+      {showLogin ? <Login setShowLogin={setShowLogin} /> : <></>}
       <div className="app">
         <Navbar setShowLogin={setShowLogin} />
         <Outlet />

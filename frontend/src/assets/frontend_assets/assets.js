@@ -10,7 +10,8 @@ import menu_5 from './menu_5.png'
 import menu_6 from './menu_6.png'
 import menu_7 from './menu_7.png'
 import menu_8 from './menu_8.png'
-import bar from './bar.svg'
+import bar from './bar.svg';
+import burger from './burger.png';
 
 import food_1 from './food_1.png'
 import food_2 from './food_2.png'
@@ -81,7 +82,8 @@ export const assets = {
     logout_icon,
     bag_icon,
     parcel_icon,
-    bar
+    bar,
+    burger
 }
 
 export const menu_list = [

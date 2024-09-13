@@ -1,9 +1,8 @@
 import React from 'react';
-import { totalAmount } from '../../store/cartSlice';
-import {useSelector} from 'react-redux'
+
 
 const PlaceOrder = () => {
-  const totalPrice = useSelector(totalAmount)
+  const totalPrice = 2;
   return (
     <div id='place-order' className='flex md:flex-row flex-col justify-between items-start gap-10 md:p-10 p-3'>
       <div id="place-order-left" className='md:w-1/2 w-full flex flex-col gap-2'>

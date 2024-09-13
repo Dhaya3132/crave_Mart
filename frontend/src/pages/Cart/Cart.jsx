@@ -3,14 +3,13 @@ import { useContext } from 'react';
 import { StoreContext } from '../../context/StoreContext';
 import { useSelector, useDispatch } from "react-redux";
 import { removeCart } from '../../store/cartSlice';
-import { totalAmount } from '../../store/cartSlice';
 import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
   const { food_list } = useContext(StoreContext);
   const dispatch = useDispatch()
   const cartItems = useSelector(state => state.cart.cartItem);
-  const totalPrice  = useSelector(totalAmount);
+  const totalPrice  = 0;
   const navigate = useNavigate();
   return (
     <div id='cart'>
@@ -30,7 +29,7 @@ const Cart = () => {
               return (
                 <div>
                   <div key={index} className='grid grid-cols-6 md:gap-5 gap-4 items-center my-3 font-medium md:text-sm text-xs' >
-                    <img src={`http://localhost:5000/aimage/`+item.image} alt="item_image" className='md:w-24 w-12 md:h-24 h-12 rounded-xl' />
+                    <img src={`http://localhost:5000/image/`+item.image} alt="item_image" className='md:w-24 w-12 md:h-24 h-12 rounded-xl' />
                     <p>{item.name}</p>
                     <p>${item.price}</p>
                     <p>{cartItems[item._id]}</p>

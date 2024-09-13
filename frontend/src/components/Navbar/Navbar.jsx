@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import { assets } from '../../assets/frontend_assets/assets';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { totalAmount } from '../../store/cartSlice';
 import { useContext } from 'react';
 import { StoreContext } from '../../context/StoreContext';
 
 const Navbar = ({ setShowLogin }) => {
-  const totalPrice = useSelector(totalAmount);
+  const totalPrice = 1;
   const [menu, setMenu] = useState('home');
   const [open, setIsOpen] = useState(false);
   const handleMenu = () => { setIsOpen(!open); }

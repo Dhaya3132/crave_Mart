@@ -1,15 +1,18 @@
 import { assets } from "../../assets/frontend_assets/assets";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart, removeCart } from "../../store/cartSlice";
+import { useContext } from "react";
+import {StoreContext} from '../../context/StoreContext';
 
 const FoodItem = ({ item }) => {
     const dispatch = useDispatch();
     const cartItem = useSelector(state => state.cart.cartItem);
+    const {token} = useContext(StoreContext);
 
     const handleAddCart = () => {
         console.log('Add to cart clicked');
         console.log('Item ID:', item._id);
-        dispatch(addToCart(item._id));
+        dispatch(addToCart(item._id, token));
     }
 
     const handleRemoveCart = () => {

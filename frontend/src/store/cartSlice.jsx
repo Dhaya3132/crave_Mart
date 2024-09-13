@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {food_list} from '../assets/frontend_assets/assets';
+
 
 const initialState = {
     cartItem: {}
@@ -11,11 +11,10 @@ const cartSlice = createSlice({
     reducers: {
         addToCart: (state, action) => {
             const itemId = action.payload;
-            console.log('from slice',itemId)
+            console.log('from slice', itemId);
             if (state.cartItem[itemId]) {
                 state.cartItem[itemId] += 1;
-            }
-            else {
+            } else {
                 state.cartItem[itemId] = 1;
             }
         },
@@ -23,24 +22,32 @@ const cartSlice = createSlice({
             const itemId = action.payload;
             if (state.cartItem[itemId] > 1) {
                 state.cartItem[itemId] -= 1;
-            }
-            else {
+            } else {
                 delete state.cartItem[itemId];
             }
         }
     }
-})
+});
 
 export const totalAmount = (state) => {
     let totalPrice = 0;
-    for(let item in state.cart.cartItem){
-        if(state.cart.cartItem[item] > 0){
-            let itemInfo = food_list.find((product) => product._id === item);
-            totalPrice += itemInfo.price * state.cart.cartItem[item];
+
+    for (let item in state.cart.cartItem) {
+        console.log(item);
+        
+        if (state.cart.cartItem[item] > 0) {
+            let itemInfo = food_list.find((product) => product._id == item);
+            console.log('itmeinfo',itemInfo)
+            if (itemInfo) {
+                totalPrice += itemInfo.price * state.cart.cartItem[item];
+            } else {
+                console.warn(`Item with id ${item} not found in food_list.`);
+            }
         }
     }
+
     return totalPrice;
-}
+};
 
 export const { addToCart, removeCart } = cartSlice.actions;
 export default cartSlice.reducer;

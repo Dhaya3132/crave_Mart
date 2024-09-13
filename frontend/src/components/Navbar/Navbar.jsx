@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { assets } from '../../assets/frontend_assets/assets';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { totalAmount } from '../../store/cartSlice';
 import { useContext } from 'react';
@@ -11,7 +11,7 @@ const Navbar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState('home');
   const [open, setIsOpen] = useState(false);
   const handleMenu = () => { setIsOpen(!open); }
-  const { token } = useContext(StoreContext);
+  const { token,setToken } = useContext(StoreContext);
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -19,6 +19,14 @@ const Navbar = ({ setShowLogin }) => {
   const handleDropdownToggle = () => {
     setIsDropdownOpen((prev) => !prev);
   };
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    setToken("");
+    localStorage.removeItem("token");
+    navigate("/");
+  }
 
   return (
     <nav>
@@ -37,6 +45,7 @@ const Navbar = ({ setShowLogin }) => {
             <Link to='/cart'><img src={assets.basket_icon} alt="cart" className='w-5' /></Link>
             {totalPrice > 0 ? <div id='dot' className='w-2 h-2 bg-orange-500 rounded-full absolute -top-2 -right-1'></div> : ''}
           </div>
+          
           {!token ? <button className='text-white px-5 py-2.5 bg-black rounded-full text-xs' onClick={() => setShowLogin(true)}>Sign in/ Login</button> :
             <div className='relative'>
               <img src={assets.profile_icon} alt="Profile Icon" className="cursor-pointer" onClick={handleDropdownToggle} />
@@ -51,7 +60,7 @@ const Navbar = ({ setShowLogin }) => {
                   <hr />
                   <li className='flex items-center p-2 hover:bg-gray-100 cursor-pointer'>
                     <img src={assets.logout_icon} alt="Logout Icon" className='w-5 h-5 mr-2' />
-                    <p>Logout</p>
+                    <p onClick={handleLogout}>Logout</p>
                   </li>
                 </ul>
               )}

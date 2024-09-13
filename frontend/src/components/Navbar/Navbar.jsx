@@ -13,6 +13,13 @@ const Navbar = ({ setShowLogin }) => {
   const handleMenu = () => { setIsOpen(!open); }
   const { token } = useContext(StoreContext);
 
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  // Toggle dropdown visibility on icon click
+  const handleDropdownToggle = () => {
+    setIsDropdownOpen((prev) => !prev);
+  };
+
   return (
     <nav>
       <div className='flex justify-between items-center font-medium text-sm' id='navBar'>
@@ -31,13 +38,24 @@ const Navbar = ({ setShowLogin }) => {
             {totalPrice > 0 ? <div id='dot' className='w-2 h-2 bg-orange-500 rounded-full absolute -top-2 -right-1'></div> : ''}
           </div>
           {!token ? <button className='text-white px-5 py-2.5 bg-black rounded-full text-xs' onClick={() => setShowLogin(true)}>Sign in/ Login</button> :
-            <div>
-              <img src={assets.profile_icon} alt="" />
-              <ul className='navbar-dropdwon'>
-                <li><img src={assets.bag_icon} alt="" /><p>Orders</p></li>
-                <hr />
-                <li><img src={assets.logout_icon} alt="" /><p>Logout</p></li>
-              </ul>
+            <div className='relative'>
+              <img src={assets.profile_icon} alt="Profile Icon" className="cursor-pointer" onClick={handleDropdownToggle} />
+
+
+              {isDropdownOpen && (
+                <ul className='navbar-dropdown absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg'>
+                  <li className='flex items-center p-2 hover:bg-gray-100 cursor-pointer'>
+                    <img src={assets.bag_icon} alt="Orders Icon" className='w-5 h-5 mr-2' />
+                    <p>Orders</p>
+                  </li>
+                  <hr />
+                  <li className='flex items-center p-2 hover:bg-gray-100 cursor-pointer'>
+                    <img src={assets.logout_icon} alt="Logout Icon" className='w-5 h-5 mr-2' />
+                    <p>Logout</p>
+                  </li>
+                </ul>
+              )}
+
             </div>}
         </div>
         <img src={assets.burger} className='w-10 h-10 md:hidden' onClick={handleMenu} />

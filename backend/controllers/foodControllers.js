@@ -1,7 +1,6 @@
-import { request } from 'http';
+import mongoose from 'mongoose';
 import foodModel from '../models/foodModels.js';
 import fs from 'fs';
-import { log } from 'console';
 
 // add foot item 
 const addFood = async (req,res) => {
@@ -48,4 +47,15 @@ const removeFood = async (req,res) => {
     }
 }
 
-export {addFood, listFoods, removeFood}
+const deleteAllFood = async (req, res) => {
+    try{
+         await mongoose.connection.db.dropCollection("foods");
+         fs.unlink(`uploads`,()=>{})
+         res.status(200).send({ message: 'Database cleared successfully!' });
+    }
+    catch(error){
+        res.status(500).send({ message: 'Error clearing the database', error });
+    }
+}
+
+export {addFood, listFoods, removeFood, deleteAllFood}

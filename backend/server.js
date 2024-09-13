@@ -2,11 +2,11 @@ import express from 'express';
 import cors from 'cors';
 import { connectDB } from './config/db.js';
 import foodRouter from './routes/foodRoutes.js';
-
+import userRouter from './routes/userRoutes.js';
 
 // app configuration 
 const app = express();
-const PORT = 5000
+const PORT = 5000;
 
 // middleware 
 app.use(express.json())
@@ -18,6 +18,7 @@ connectDB();
 //api endpoints
 app.use("/api/food",foodRouter);
 app.use('/image',express.static('uploads'));
+app.use('/api/user', userRouter)
 
 app.get('/',(req, res)=>{
     res.send('hello from server')

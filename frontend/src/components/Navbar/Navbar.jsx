@@ -3,11 +3,16 @@ import { assets } from '../../assets/frontend_assets/assets';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { totalAmount } from '../../store/cartSlice';
+import { useContext } from 'react';
+import { StoreContext } from '../../context/StoreContext';
+
 const Navbar = ({ setShowLogin }) => {
   const totalPrice = useSelector(totalAmount);
   const [menu, setMenu] = useState('home');
   const [open, setIsOpen] = useState(false);
   const handleMenu = () => { setIsOpen(!open); }
+  const { token } = useContext(StoreContext);
+
   return (
     <nav>
       <div className='flex justify-between items-center font-medium text-sm' id='navBar'>
@@ -25,7 +30,15 @@ const Navbar = ({ setShowLogin }) => {
             <Link to='/cart'><img src={assets.basket_icon} alt="cart" className='w-5' /></Link>
             {totalPrice > 0 ? <div id='dot' className='w-2 h-2 bg-orange-500 rounded-full absolute -top-2 -right-1'></div> : ''}
           </div>
-          <button className='text-white px-5 py-2.5 bg-black rounded-full text-xs' onClick={() => setShowLogin(true)}>Sign in/ Login</button>
+          {!token ? <button className='text-white px-5 py-2.5 bg-black rounded-full text-xs' onClick={() => setShowLogin(true)}>Sign in/ Login</button> :
+            <div>
+              <img src={assets.profile_icon} alt="" />
+              <ul className='navbar-dropdwon'>
+                <li><img src={assets.bag_icon} alt="" /><p>Orders</p></li>
+                <hr />
+                <li><img src={assets.logout_icon} alt="" /><p>Logout</p></li>
+              </ul>
+            </div>}
         </div>
         <img src={assets.burger} className='w-10 h-10 md:hidden' onClick={handleMenu} />
       </div>

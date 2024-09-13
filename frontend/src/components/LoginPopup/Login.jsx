@@ -7,39 +7,39 @@ import { StoreContext } from '../../context/StoreContext';
 const Login = ({ setShowLogin }) => {
   const [currentState, setCurrentState] = useState('Login');
   const [data, setData] = useState({
-    name:"",
-    email:"",
-    password:""
+    name: "",
+    email: "",
+    password: ""
   })
 
-  const {setToken} = useContext(StoreContext);
+  const { setToken } = useContext(StoreContext);
 
   const handleChange = (e) => {
-    const {name, value} = e.target;
+    const { name, value } = e.target;
     setData({
       ...data,
-      [name]:value
+      [name]: value
     })
   }
   const handleLogin = async (e) => {
     e.preventDefault();
     const url = 'http://localhost:5000/api/user';
     let newUrl = url;
-    if(currentState === 'Login'){
-      newUrl+= '/login';
+    if (currentState === 'Login') {
+      newUrl += '/login';
     }
-    else{
-      newUrl+='/register';
+    else {
+      newUrl += '/register';
     }
 
     const response = await axios.post(newUrl, data);
 
-    if(response.data.success){
+    if (response.data.success) {
       setToken(response.data.token);
       localStorage.setItem("token", response.data.token);
       setShowLogin(false)
     }
-    else{
+    else {
       alert(response.data.message)
     }
 

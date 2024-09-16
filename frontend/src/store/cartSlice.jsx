@@ -9,15 +9,12 @@ const cartSlice = createSlice({
     initialState,
     reducers: {
         addToCart: (state, action) => {
-            const {itemId,token} = action.payload;
+            const {itemId, token} = action.payload;
             console.log('from slice', itemId);
             if (state.cartItem[itemId]) {
                 state.cartItem[itemId] += 1;
             } else {
                 state.cartItem[itemId] = 1;
-            }
-            if(token){
-                
             }
         },
         removeCart: (state, action) => {
@@ -31,25 +28,26 @@ const cartSlice = createSlice({
     }
 });
 
-// export const totalAmount = (state) => {
-//     let totalPrice = 0;
+export const totalAmount = (state) => {
+    let totalPrice = 0;
+    const food_list = state.food.foodList;
 
-//     for (let item in state.cart.cartItem) {
-//         console.log(item);
+    for (let item in food_list) {
+        console.log(item);
         
-//         if (state.cart.cartItem[item] > 0) {
-//             let itemInfo = food_list.find((product) => product._id == item);
-//             console.log('itmeinfo',itemInfo)
-//             if (itemInfo) {
-//                 totalPrice += itemInfo.price * state.cart.cartItem[item];
-//             } else {
-//                 console.warn(`Item with id ${item} not found in food_list.`);
-//             }
-//         }
-//     }
+        if (state.cart.cartItem[item] > 0) {
+            let itemInfo = food_list.find((product) => product._id == item);
+            console.log('itmeinfo',itemInfo)
+            if (itemInfo) {
+                totalPrice += itemInfo.price * state.cart.cartItem[item];
+            } else {
+                console.warn(`Item with id ${item} not found in food_list.`);
+            }
+        }
+    }
 
-//     return totalPrice;
-// };
+    return totalPrice;
+};
 
 export const { addToCart, removeCart } = cartSlice.actions;
 export default cartSlice.reducer;

@@ -12,7 +12,7 @@ const FoodItem = ({ item }) => {
     const handleAddCart = () => {
         console.log('Add to cart clicked');
         console.log('Item ID:', item._id);
-        dispatch(addToCart(item._id, token));
+        dispatch(addToCart({itemId: item._id, toke:token}));
     }
 
     const handleRemoveCart = () => {
